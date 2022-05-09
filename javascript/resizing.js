@@ -48,13 +48,15 @@ function dragElement(elmnt) {
   };
 
 var mouseDownOnResizeHandle = false;
+const minLeftColumnWidth = 200;
+const maxLeftColumnWidth = 500;
 
 window.addEventListener('resize', e => {leftColumn.style.width = leftColumn.getBoundingClientRect().right + 'px'});
 
 window.addEventListener('mousedown', e => { 
   var handlePosition = leftColumn.getBoundingClientRect().right;
   if (((handlePosition - 2) < e.clientX) & (e.clientX < (handlePosition + 2))) {
-    
+    e.preventDefault()
     mouseDownOnResizeHandle = true;
   } else {
     mouseDownOnResizeHandle = false
@@ -76,10 +78,13 @@ window.addEventListener('mousemove', e => {
     }
     if (mouseDownOnResizeHandle) {
       windowWidth = window.screen.width
-      console.log(windowWidth);
-      if (((windowWidth / 3) < leftColumn.getBoundingClientRect().width) & (leftColumn.getBoundingClientRect().width < (windowWidth / 1.5))) {
-        leftColumn.style.width = (e.clientX) + "px";
-    }
+      if (leftColumn.getBoundingClientRect().width >= minLeftColumnWidth) {
+        var allowance = Math.max(minLeftColumnWidth, e.clientX);
+        if (e.clientX >= maxLeftColumnWidth) {
+          allowance = maxLeftColumnWidth;
+        };
+      leftColumn.style.width = (allowance) + "px";
+      }
     };
   });
 
