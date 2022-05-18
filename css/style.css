@@ -147,6 +147,14 @@ body .resize-handle {
   text-align: right;
 }
 
+.right-side .messages-list #ChatPanel .chat-bubble p {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
+}
+
 .right-side .messages-list #ChatPanel .chat-bubble:after {
   content: "";
   position: absolute;

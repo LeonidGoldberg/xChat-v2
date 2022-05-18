@@ -154,6 +154,13 @@ body {
           text-align: right;
         }
 
+        
+        p {
+          overflow-wrap: break-word;
+          word-wrap: break-word;
+          hyphens: auto;
+        }
+
         &:after {
           content: "";
           position: absolute;
